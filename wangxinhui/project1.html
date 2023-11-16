@@ -16,7 +16,7 @@
 
 
 </head>
-<body style="background-image: url(img/000.png);background-size: cover;">
+<body style="background-image: url(img/000.jpg);background-size: cover;">
 <!-- 上面那排 -->
 <div class="w3-top">
   <div class="w3-bar w3-wide w3-padding ">
@@ -33,7 +33,7 @@
 <!-- Header -->
 
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;object-fit: contain;" id="project1">
-  <img class="w3-image fade-transition" src="img/1_top.png" alt="Architecture" width="1500" height="800">
+  <img class="w3-image fade-transition" src="img/1_cover.jpg" alt="Architecture" width="1500" height="800">
   <div class="w3-display-middle w3-margin-top ">
    </div>
 </header>
@@ -78,7 +78,7 @@
 
 <!-- 版面一 -->
 <div>
-  <img class="w3-image" src="img/1-1.png" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
+  <img class="w3-image" src="img/1-1.jpeg" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -100,7 +100,7 @@
 
 <!-- 版面二 -->
 <div>
-  <img class="w3-image" src="img/1-2.png" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
+  <img class="w3-image" src="img/1-2.jpeg" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -123,7 +123,7 @@
 
 <!-- 版面三 -->
 <div>
-  <img class="w3-image" src="img/1-3.png" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
+  <img class="w3-image" src="img/1-3.jpg" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
 <div>
   <div style="height: 0px;"></div>
   <div>
@@ -147,7 +147,7 @@
 
 <!-- 版面四 -->
 <div>
-  <img class="w3-image" src="img/1-4.png" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
+  <img class="w3-image" src="img/1-4.jpeg" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -167,7 +167,7 @@
 
 <!-- 版面五 -->
 <div>
-  <img class="w3-image" src="img/1-5.PNG" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
+  <img class="w3-image" src="img/1-5.jpeg" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -214,14 +214,15 @@
 
 <!-- video -->
 <div>
-  <iframe width="800" height="450" src="https://www.youtube.com/embed/67revotMn4Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
- </div>
+  <iframe width="800" height="450" src="https://www.youtube.com/embed/HfI5ArDSsvg?si=ZUkhLL-xpz4g-9-v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> </div>
  <div>
 <div style="height: 25px;"></div>
 <div style="height: 200px;"></div>
 </div>
 </div>
 </div>
+
+
 
 <!-- 照片 -->
 <div>
@@ -260,28 +261,48 @@
   <span class="close" onclick="closeModal()">&times;</span>
   <img class="modal-content" id="modalImage">
   <div id="caption"></div>
+
+  <!-- 左右箭头 -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 
-
 <script>
- // 點擊圖片時觸發的函數
-function onClick(imgElement) {
-  var modal = document.getElementById("modal");
-  var modalImage = document.getElementById("modalImage");
-  var caption = document.getElementById("caption");
+  var modalIndex = 0; // 用于跟踪当前模态框中显示的图片索引
+  var images = document.querySelectorAll('.w3-row-padding img'); // 获取所有图片
 
-  modal.style.display = "block";
-  modalImage.src = imgElement.src;
-  caption.innerHTML = imgElement.alt;
-}
+  function onClick(imgElement) {
+    var modal = document.getElementById("modal");
+    var modalImage = document.getElementById("modalImage");
+    var caption = document.getElementById("caption");
 
-// 關閉模態框
-function closeModal() {
-  var modal = document.getElementById("modal");
-  modal.style.display = "none";
-}
+    modalIndex = Array.from(images).indexOf(imgElement); // 获取点击的图片在数组中的索引
+    showModal(modal, modalImage, caption);
+  }
 
-  </script>
+  function showModal(modal, modalImage, caption) {
+    modal.style.display = "block";
+    modalImage.src = images[modalIndex].src;
+    caption.innerHTML = images[modalIndex].alt;
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
+
+  function plusSlides(n) {
+    modalIndex += n;
+    if (modalIndex >= images.length) {
+      modalIndex = 0;
+    }
+    if (modalIndex < 0) {
+      modalIndex = images.length - 1;
+    }
+    showModal(document.getElementById("modal"), document.getElementById("modalImage"), document.getElementById("caption"));
+  }
+</script>
+
 
 
 
@@ -353,8 +374,8 @@ function closeModal() {
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+<footer class="w3-center w3-padding-16">
+  <img src="img/logo.png" style="width:10%">
 </footer>
 
 </body>

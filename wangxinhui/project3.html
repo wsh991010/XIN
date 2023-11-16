@@ -16,7 +16,7 @@
 
 
 </head>
-<body style="background-image: url(img/000.png);background-size: cover;">
+<body style="background-image: url(img/000.jpg);background-size: cover;">
 <!-- 上面那排 -->
 <div class="w3-top">
   <div class="w3-bar w3-wide w3-padding ">
@@ -77,7 +77,7 @@
 
 <!-- 版面一 -->
 <div>
-  <img class="w3-image" src="img/3-1.png" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
+  <img class="w3-image" src="img/3-1.jpeg" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -96,7 +96,7 @@
 
 <!-- 版面二 -->
 <div>
-  <img class="w3-image" src="img/3-2.png" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
+  <img class="w3-image" src="img/3-2.jpeg" alt="Architecture" style="object-fit: contain;"  width="1500" height="800">
 <div>
   <div style="height: 25px;"></div>
   <div>
@@ -114,7 +114,7 @@
 
 <!-- 版面三 -->
 <div>
-  <img class="w3-image" src="img/3-3.png" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
+  <img class="w3-image" src="img/3-3.jpeg" alt="Architecture" style="object-fit: contain;" width="1500" height="800">
 <div>
   <div style="height: 0px;"></div>
   <div>
@@ -154,28 +154,28 @@
   </div>
 <div class="w3-row-padding w3-center w3-padding-24">
   <div class="w3-col m3">
-    <img src="img/3-3-1.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-1.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-2.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-2.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-3.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-3.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-4.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-4.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-5.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-5.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-6.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-6.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-7.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-7.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <div class="w3-col m3">
-    <img src="img/3-3-8.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
+    <img src="img/3-3-8.jpeg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="">
   </div>
   <!-- 其他圖片 -->
 </div>
@@ -185,28 +185,47 @@
   <span class="close" onclick="closeModal()">&times;</span>
   <img class="modal-content" id="modalImage">
   <div id="caption"></div>
+
+  <!-- 左右箭头 -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 
-
 <script>
- // 點擊圖片時觸發的函數
-function onClick(imgElement) {
-  var modal = document.getElementById("modal");
-  var modalImage = document.getElementById("modalImage");
-  var caption = document.getElementById("caption");
+  var modalIndex = 0; // 用于跟踪当前模态框中显示的图片索引
+  var images = document.querySelectorAll('.w3-row-padding img'); // 获取所有图片
 
-  modal.style.display = "block";
-  modalImage.src = imgElement.src;
-  caption.innerHTML = imgElement.alt;
-}
+  function onClick(imgElement) {
+    var modal = document.getElementById("modal");
+    var modalImage = document.getElementById("modalImage");
+    var caption = document.getElementById("caption");
 
-// 關閉模態框
-function closeModal() {
-  var modal = document.getElementById("modal");
-  modal.style.display = "none";
-}
+    modalIndex = Array.from(images).indexOf(imgElement); // 获取点击的图片在数组中的索引
+    showModal(modal, modalImage, caption);
+  }
 
-  </script>
+  function showModal(modal, modalImage, caption) {
+    modal.style.display = "block";
+    modalImage.src = images[modalIndex].src;
+    caption.innerHTML = images[modalIndex].alt;
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
+
+  function plusSlides(n) {
+    modalIndex += n;
+    if (modalIndex >= images.length) {
+      modalIndex = 0;
+    }
+    if (modalIndex < 0) {
+      modalIndex = images.length - 1;
+    }
+    showModal(document.getElementById("modal"), document.getElementById("modalImage"), document.getElementById("caption"));
+  }
+</script>
 
 
 
@@ -278,8 +297,8 @@ function closeModal() {
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+<footer class="w3-center w3-padding-16">
+  <img src="img/logo.png" style="width:10%">
 </footer>
 
 </body>
